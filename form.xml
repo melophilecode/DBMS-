@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<student xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:noNamespaceSchemaLocation="sample_schema.xsd">
+     <std1>
+        <name>anitha</name>
+ 	<regno>001</regno>
+	<address>chennai</address>
+	<phoneno>12345</phoneno>
+     </std1>
+     <std2>
+        <name>kalai</name>
+ 	<regno>002</regno>
+	<address>trichy</address>
+	<phoneno>34521</phoneno>
+     </std2>
+     <std3>
+        <name>gopal</name>
+ 	<regno>003</regno>
+	<address>nagercoil</address>
+	<phoneno>54321</phoneno>
+     </std3>
+     <std4>
+        <name>shiva</name>
+ 	<regno>004</regno>
+	<address>madurai</address>
+	<phoneno>45342</phoneno>
+     </std4>
+</student>
