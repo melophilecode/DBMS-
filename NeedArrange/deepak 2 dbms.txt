@@ -1,0 +1,37 @@
+create table emp(name varchar(15),age int,salary int);
+insert into emp values('deepak',19,30000);
+insert into emp values('jef',27,40000);
+insert into  emp values('kavi',20,50000);
+select *from emp;
+commit;
+rollback;
+select *from emp;
+insert into emp values('jai',28,35000);
+select *from emp;
+rollback;
+select *from emp;
+create table student( id int,name varchar(15),age int);
+savepoint a;
+insert into student values(1,'anbu',20);
+insert into student values(2,'jek',34);
+savepoint b;
+insert into student values(3,'rum',23);
+insert into student values(4,'jem',38);
+select *from student;
+rollback to b;
+select *from student;
+rollback to  a;
+select *from student;
+
+grant select,insert,update on emp to rc;
+
+insert into oi.emp values('sachin',44,45698);
+
+update oi.emp set age=20 where name='kavi';
+
+revoke update,select,insert on emp from rc;
+
+
+
+
+

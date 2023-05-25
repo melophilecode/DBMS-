@@ -1,0 +1,22 @@
+create table report(id number,name varchar(20));
+insert into report values(1,'dhoni');
+insert into report values(2,'virat');
+insert into report values(3,'rohit');
+insert into report values(4,'hardik');
+insert into report values(5,'raina');
+select *from report;
+create table employee(id number,age number,salary number);
+insert into employee values(2,34,150000);
+insert into employee values(3,37,170000);
+insert into employee values(4,35,200000);
+insert into employee values(5,38,180000);
+insert into employee values(6,40,210000);
+
+select *from employee;
+select a.name,a.id,b.age,b.salary from report a left outer join employee b on(a.id=b.id);
+select a.name,a.id,b.age,b.salary from report a right outer join employee b on(a.id=b.id);
+select a.name,a.id,b.age,b.salary from report a,employee b where a.id>b.id;
+select a.name,a.id,b.age,b.salary from report a,employee b where a.id>b.id;
+select *from report natural join employee;
+select *from report cross join employee;
+select *from report a left outer join employee b on a.id=b.id union all select *from report a right outer join employee b on a.id=b.id

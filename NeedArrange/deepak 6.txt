@@ -1,0 +1,94 @@
+create table customer(name varchar(25),gender varchar(24),address varchar(25));
+create table stmark(name varchar(25),mark1 int,mark2 int,mark3 int,mark4 int);
+insert into customer values('ajay','male','ahmedabad');
+insert into customer values('akash','male','delhi');
+insert into customer values('alan','male','mumbai');
+insert into customer values('alex','male','kota');
+insert into customer values('ramesh','male','bhopal');
+insert into stmark values('arun',94,87,92,55);
+insert into stmark values('anu',99,92,95,75);
+insert into stmark values('ajay',89,72,91,85);
+insert into stmark values('asha',91,92,66,87);
+select*from customer;
+create or replace procedure insertcustomer(
+p_name customer.name%type,
+p_gender customer.gender%type,
+p_address customer.address%type)
+is
+begin
+insert into customer(name,gender,address)
+values(p_name,p_gender,p_address);
+commit;
+end;
+/
+execute insertcustomer('varun','male','dehli');
+select*from customer;
+create or replace procedure updatecustomer(
+p_name customer.name%type,
+p_gender customer.gender%type,
+p_address customer.address%type)
+is
+begin
+update customer set gender=p_gender,
+address=p_address where name=p_name;
+commit;
+end;
+/
+execute updatecustomer('varun','male','agra')
+select*from customer;
+create or replace procedure deletecustomer(
+p_name in customer.name%type)
+is
+begin 
+delete from customer where name=p_name;
+end;
+/
+execute deletecustomer('alex')
+select*from customer;
+set serveroutput on
+create or replace procedure selectcustomer(
+p_name in customer.name%type)
+is
+p_address varchar(20);
+begin
+select address into p_address
+from customer where name=p_name;
+dbms_output.put_line('pname='||p_name);
+dbms_output.put_line('p_address='||p_address);
+end;
+/
+execute selectcustomer('alan')
+pnama=alan
+p_address=mumbai
+select*from customer;
+create or replace function totalcustomers
+return number is
+total number(2):=0;
+begin
+select count(*)into total
+from customer;
+return total;
+end;
+/
+select totalcustomers() from dual;
+select*from stmark;
+create or replace function pmark(sname varchar)
+return number
+is
+m1 number(3);
+m2 number(3);
+m3 number(3);
+m4 number(3);
+total number(3);
+percentage number(3);
+begin
+select mark1 into m1 from stmark where name=sname;
+select mark2 into m2 from stmark where name=sname;
+select mark3 into m3 from stmark where name=sname;
+select mark4 into m4 from stmark where name=sname;
+total:=m1+m2+m3+m4;
+percentage:=total/4;
+return percentage;
+end;
+/
+select pmark('anu')from dual;

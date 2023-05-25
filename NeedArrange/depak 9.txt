@@ -1,0 +1,35 @@
+create table customer(id int,name varchar(25),age int,address varchar(25),salary int);
+insert into customer values(1,'ben',18,'bhopal',18000);
+insert into customer values(2,'ram',19,'goa',19000);
+insert into customer values(3,'john',20,'salem',20000);
+select*from customer;
+create view customer_view as
+select name,age
+from customer;
+select*from customer_view;
+create table cus(id int,name varchar(25),age int,address varchar(25),salary int);
+insert into cus values(1,'ram',19,'assam',18000);
+insert into cus values(2,'arun',23,'bengal',20000);
+insert into cus values(3,'varun',24,'pune',22000);
+create view cus_view as
+select name,age,address
+from cus
+where age>20;
+select*from cus_view;
+update customer_view
+set age=26
+where name='ben';
+select*from customer_view;
+delete from customer_view
+where age=26;
+select*from customer_view;
+drop view customer_view;
+select*from customer_view;
+select*from customer;
+set autotrace on explain;
+select*from customer
+where salary>10000;
+create index cus_index
+on customer(salary);
+select*from customer
+where salary>10000;

@@ -1,0 +1,30 @@
+create table emp(compname varchar(20),empname varchar(45),empage integer,empid int,salary int);
+insert into emp values('GOOGLE','james',35,111,50000);
+insert into emp values('AMAZON','Helen',28,121,48000);
+insert into emp values('zoho','sofia',39,131,65000);
+insert into emp values('tcs','mathew',27,141,54000);
+insert into emp values('dell','alice',34,151,48000);
+select*from emp;
+
+create table comp(compname varchar(10),empname varchar(20),empage int,empid int,salary int);
+insert into comp values('microsoft','william',34,131,56000);
+insert into comp values('yahoo','smith',26,211,67000);
+insert into comp values('saffron','danny',42,311,86000);
+insert into comp values('ibm','riya',34,411,56000);
+select*from comp;
+select compname,sum(salary)"total salary"from emp group by compname;
+select*from emp where compname in (select compname from emp where salary=48000);
+select empname,compname from(select*from emp where salary=48000);
+select empname,empage,salary from emp where compname in('tcs','google');
+select empname,empage,salary from emp where compname not in('tcs','google');
+
+
+select empname,compname,salary from emp order by salary desc;
+select *from comp;
+
+
+
+
+select a.empname,a.empage,b.salary from comp a join emp b using(empid);
+select b.empname,b.compname,a.salary from comp a join emp b on(a.empid=b.empid);
+select a.empname,b.salary,b.compname from comp a inner join emp b using(empid);
